@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -116,11 +117,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void addData() {
+        List<UserInfo> infos = new ArrayList<>();
         UserInfo userInfo = new UserInfo();
         userInfo.setName("张三");
         userInfo.setAge(18);
         userInfo.setSex(1);
-        UserDao.getInstance().insertUserData(userInfo);
+        infos.add(userInfo);
+        UserInfo userInfo2 = new UserInfo();
+        userInfo2.setName("李四");
+        userInfo2.setAge(28);
+        userInfo2.setSex(1);
+        infos.add(userInfo2);
+        //UserDao.getInstance().insertUserData(userInfo);
+        UserDao.getInstance().insertOrReplaceMultiData(infos);
         queryData();
     }
 
