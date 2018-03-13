@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void updateData() {
         if (!lists.isEmpty()) {
             UserInfo userInfo = lists.get(0);
-            userInfo.setName("李四");
+            userInfo.setName("王五");
             UserDao.getInstance().updateUserData(userInfo);
             queryData();
         }

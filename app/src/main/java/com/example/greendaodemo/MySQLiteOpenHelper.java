@@ -18,7 +18,7 @@ public class MySQLiteOpenHelper extends DaoMaster.OpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         super.onUpgrade(db, oldVersion, newVersion);
-        //----------------------------使用sql实现升级逻辑
+        //使用sql实现升级逻辑
         if (oldVersion == newVersion) {
             Log.e("onUpgrade", "数据库是最新版本,无需升级");
             return;
@@ -26,15 +26,11 @@ public class MySQLiteOpenHelper extends DaoMaster.OpenHelper {
         Log.e("onUpgrade", "数据库从版本" + oldVersion + "升级到版本" + newVersion);
         switch (oldVersion) {
             case 1:
-                String sql = "";
+                String sql = "ALTER TABLE 'UserInfo' ADD COLUMN 'address' TEXT;";
                 db.execSQL(sql);
             case 2:
             default:
                 break;
         }
-        //-----------------------------------
-        //--------------------------或者使用GreenDaoUpgradeHelper辅助库实现逻辑
-//        MigrationHelper.migrate(db,UserDao.class);
-        //----------------------------
     }
 }
